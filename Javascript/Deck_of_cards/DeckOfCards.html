@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Deck of Cards</title>
+	<script type="text/javascript">
+		class Deck {
+			constructor() {
+				this.cards = [];
+			}
+			reset() {
+				this.cards = [];
+				const suits = ['\u2663', '\u2665', '\u2666', '\u2660'];
+				const vals = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
+				for (let suit of suits) {
+					for (let val of vals) {
+						this.cards.push(val + ' of ' + suit);
+					}
+				}
+				// console.log(this.cards);
+				return this;
+			}
+			shuffle() {
+				var m = this.cards.length, t, i;
+
+				// While there remain elements to shuffle
+				while (m) {
+					// Pick a remaining element
+					i = Math.floor(Math.random() * m--);
+
+					// And Swap it with the current element.
+					t = this.cards[m];
+					this.cards[m] = this.cards[i];
+					this.cards[i] = t;
+				}
+				// console.log(this);
+				return this;
+ 			}
+ 			deal() {
+ 				 return this.cards.pop();
+ 			}
+		}
+
+		class Player {
+			constructor(name) {
+				this.name = name;
+				this.hand = [];
+			}
+			drawHand(deck) {
+				this.hand.push(deck.deal());
+				// console.log(this.hand);
+				return this;
+			}
+			discard() {
+				this.hand.pop();
+				return this;
+			}
+		}
+		const deck1 = new Deck();
+		deck1.reset().shuffle();
+
+		const player1 = new Player('Joe');
+		player1.drawHand(deck1).drawHand(deck1);
+		console.log(player1.hand);
+		player1.discard();
+		console.log(player1.hand);
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

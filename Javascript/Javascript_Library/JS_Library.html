@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript Library</title>
+	<script type="text/javascript">
+		function each(arr, callback) {
+			for (let i = 0; i < arr.length; i++) {
+				callback(arr[i], i);
+			}
+		}
+
+
+		var _ = {
+			map: function(arr, callback) {
+				let result = [];
+				for (let i = 0; i < arr.length; i++) {
+					result.push(callback(arr[i], i));
+				}
+				return result;
+			},
+			reduce: function(arr, callback, memo) {
+				let result = [].concat(arr);
+				if (memo === undefined) {
+					memo = result.pop();
+				}
+				for (let i = 0; i < arr.length; i++) {
+					memo = callback(memo, arr[i], i);
+				}
+				return memo;
+			},
+			find: function(arr, callback) {
+				for (let i = 0; i < arr.length; i++) {
+					if (callback(arr[i])) {
+						return arr[i];
+					}
+					else {
+						return "cannot be found";
+					}
+				}
+			},
+			filter: function(arr, callback) {
+				let result = [];
+				for (let i = 0; i < arr.length; i++) {
+					if (callback(arr[i])) {
+						result.push(arr[i]);
+					}
+				}
+				return result;
+			},
+			reject: function(arr, callback) {
+				let result = [];
+				for (let i = 0; i < arr.length; i++) {
+					if (!callback(arr[i])) {
+						result.push(arr[i]);
+					}
+				}
+				return result;
+			}
+		};
+		const array = [1, 2, 3, 4, 5, 6, 7, 8];
+		const array2 = [1, 'mouse', 2, 3, 4, 5, 6, 'fish', 7, 8];
+
+		let list = _.map(array2, function(ele, i) {
+			return ele;
+		});
+		let even = _.filter(array, function(ele) {
+			return ele % 2 == 0;
+		});
+		let noString = _.reject(array2, function(ele) {
+			return typeof ele === "string";
+		})
+		let findMouse = _.find(array2, function(ele) {
+			return ele === "mouse";
+		})
+		let add = _.reduce(array, function(x, y) {
+			return x + y;
+		})
+
+		console.log(list);
+		console.log(even);
+		console.log(noString);
+		console.log(findMouse);
+		console.log(add);
+	</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hunting Github</title>
+</head>
+<body>
+<button id="hunt">Hunt Github</button>
+<div id="name"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+let button = document.getElementById('hunt');
+button.addEventListener('click', getdata);
+
+function getdata() {
+	$.get("https://api.github.com/users/zaapen", displayName);
+	
+	function displayName(data) {
+		$( "#name").html("<p>" + data.name + "</p>");
+		console.log(data);
+	}
+}
+
+</script>
+</body>
+</html>
