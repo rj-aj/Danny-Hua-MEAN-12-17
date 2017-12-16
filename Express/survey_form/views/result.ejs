@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Result</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="shortcut icon" href="">
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-8 col-md-offset-2 boxframe">
+			<div class="col-sm-8 col-sm-offset-2 boxframe2">
+				<h3>Submitted Information:</h3>
+			</div>
+			<div class="col-sm-8 col-sm-offset-2 boxframe3">
+				<div class="col-sm-6">
+					<p>Name:</p>
+				</div>
+				<div class="col-sm-6">
+					<p><%= context.name %></p>
+				</div>
+				<div class="col-sm-6">
+					<p>Dojo Location:</p>
+				</div>
+				<div class="col-sm-6">
+					<p><%= context.dojoLoc %></p>
+				</div>
+				<div class="col-sm-6">
+					<p>Favorite Language:</p>
+				</div>
+				<div class="col-sm-6">
+					<p><%= context.language %></p>
+				</div>
+				<div class="col-sm-6">
+					<p>Comment:</p>
+				</div>
+				<div class="col-sm-6">
+					<p><%= context.comment %></p>
+				</div>
+			</div>
+			<div class="col-sm-offset-8 col-sm-4">
+				<form action="/">
+					<input class="btn btn-success" type="submit" name="back" value="Go Back">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

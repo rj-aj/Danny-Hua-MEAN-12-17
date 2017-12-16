@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Group Chat</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="shortcut icon" href="">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+         $(document).ready(function() {
+            var socket = io.connect();
+
+            var name = prompt("Enter your name");
+
+            socket.emit('userJoin', {
+            	username: name
+            });
+
+            socket.on('loadMessage', function(data) {
+            	let loadmess = data.messagelog;
+            	for (let message of loadmess) {
+            		$('#messages').append('<p>' + message.name + ': ' + message.message + '</p>');
+            	}
+            })
+
+            socket.on('messageLog', function(data) {
+            	let mess = data.messagelog;
+            	
+            	$('#messages').append('<p>' + mess.name + ': ' + mess.message + '</p>');
+            	
+            });
+
+            $('#send').click(function(e) {
+            	e.preventDefault();
+            	socket.emit("message", {
+            		name: name,
+            		message: $('#chat').val()
+            	});
+            });
+        });
+	</script>
+</head>
+<body>
+<div class="container">
+	<h2>Conversation Board</h2>
+	<div class="col-md-8 boxframe chatbox" id="messages">
+		
+	</div>
+	<textarea class="form-control" id="chat" rows="1"></textarea>
+	<button class="btn btn-primary" id="send">send</button>
+</div>
+</body>
+</html>
