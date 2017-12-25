@@ -1,0 +1,84 @@
+1) Create a database called 'my_first_db'.
+	use my_first_db
+
+2) Create students collection.
+	db.createCollection("students")
+
+3) Each document you insert into this collection should have the following format: ({name: STRING, home_state: STRING, lucky_number: NUMBER, birthday: {month: NUMBER, day: NUMBER, year: NUMBER}}).
+	db.my_first_db.insert({name: "Ryu", home_state: "California", lucky_number: 7, birthday: {month: 1, day: 1, year: 1985}})
+
+4) Create 5 students with the appropriate info.
+	db.my_first_db.insert({name: "Ayane", home_state: "Texas", lucky_number: 2, birthday: {month: 2, day: 3, year: 1985}})
+
+	db.my_first_db.insert({name: "Kasumi", home_state: "New York", lucky_number: 12, birthday: {month: 4, day: 1, year: 1985}})
+
+	db.my_first_db.insert({name: "Momoji", home_state: "Florida", lucky_number: 13, birthday: {month: 3, day: 7, year: 1985}})
+
+	db.my_first_db.insert({name: "Naruto", home_state: "Nevada", lucky_number: 4, birthday: {month: 7, day: 15, year: 1985}})
+
+	db.my_first_db.insert({name: "Sakura", home_state: "California", lucky_number: 9, birthday: {month: 9, day: 1, year: 1985}})
+
+5) Get all students.
+	db.my_first_db.find().pretty()
+
+6) Retrieve all students who are from California (San Jose Dojo) or Washington (Seattle Dojo).
+	db.my_first_db.find({home_state: "California"}).pretty()
+
+7) Get all students whose lucky number is:
+	-greater than 3
+		db.my_first_db.find({lucky_number: {$gt: 3}})
+	-less than or equal to 10
+		db.my_first_db.find({lucky_number: {$lte: 10}})
+	-between 1 and 9 (inclusive)
+		db.my_first_db.find({lucky_number: {$gt: 1, $lt: 9}})
+
+8) Add a field to each student collection called 'interests' that is an ARRAY.  It should contain the following entries: 'coding', 'brunch', 'MongoDB'. Do this in ONE operation.
+	db.my_first_db.update({name: "Ryu", }, {$set: {interests: ['coding', 'brunch', 'MongoDB']}})
+	db.my_first_db.update({name: "Ayane", }, {$set: {interests: ['coding', 'brunch', 'MongoDB']}})
+	db.my_first_db.update({name: "Kasumi", }, {$set: {interests: ['coding', 'brunch', 'MongoDB']}})
+	db.my_first_db.update({name: "Momoji", }, {$set: {interests: ['coding', 'brunch', 'MongoDB']}})
+	db.my_first_db.update({name: "Naruto", }, {$set: {interests: ['coding', 'brunch', 'MongoDB']}})
+	db.my_first_db.update({name: "Sakura", }, {$set: {interests: ['coding', 'brunch', 'MongoDB']}})
+
+9) Add some unique interests for each particular students into each of their interest arrays.
+	db.my_first_db.update({name: 'Ryu'}, {$push: {interests: 'movies'}})
+	db.my_first_db.update({name: 'Ayane'}, {$push: {interests: 'dinner'}})
+	db.my_first_db.update({name: 'Kasumi'}, {$push: {interests: 'sleeping'}})
+	db.my_first_db.update({name: 'Momoji'}, {$push: {interests: 'cooking'}})
+	db.my_first_db.update({name: 'Naruto'}, {$push: {interests: 'ramen'}})
+	db.my_first_db.update({name: 'Sakura'}, {$push: {interests: 'running'}})
+
+10) Add the interest 'taxes' into someone's interest array.
+	db.my_first_db.update({name: 'Ryu'}, {$push: {interests: 'taxes'}})
+
+11) Remove the 'taxes' interest you just added.
+	db.my_first_db.update({name: 'Ryu'}, {$pull: {interests: 'taxes'}})
+
+12) Remove all students who are from California (or Washington).
+	db.my_first_db.remove({home_state: 'California'})
+
+13) Remove a student by name.
+	db.my_first_db.remove({name: 'Naruto'})
+
+14) Remove a student whose lucky number is greater than 5 (JUST ONE)
+	db.my_first_db.remove({lucky_number: {$gt: 5}}, true)
+
+15) Add a field to each student collection called 'number_of_belts' and set it to 0.
+	db.my_first_db.update({name: 'Ayane'}, {$set: {number_of_belts: 0}})db.my_first_db.update({name: 'Momoji'}, {$set: {number_of_belts: 0}})
+
+16) Increment this field by 1 for all students in Washington (Seattle Dojo).
+	db.my_first_db.update({name: 'Ayane'}, {$inc: {number_of_belts: 1}})
+	db.my_first_db.update({name: 'Momoji'}, {$inc: {number_of_belts: 1}})
+
+17) Rename the 'number_of_belts' field to 'belts_earned'
+	db.my_first_db.update({name: 'Ayane'}, {$rename: {'number_of_belts': 'belts_earned'}})
+	db.my_first_db.update({name: 'Momoji'}, {$rename: {'number_of_belts': 'belts_earned'}})
+
+18) Remove the 'lucky_number' field.
+	db.my_first_db.update({name: 'Ayane'}, {$unset: {lucky_number: ""}})
+	db.my_first_db.update({name: 'Momoji'}, {$unset: {lucky_number: ""}})
+
+19) Add a 'updated_on' field, and set the value as the current date.
+	db.my_first_db.update({name: 'Ayane'}, {$currentDate: {updated_on: {$type: "date"}}})
+	db.my_first_db.update({name: 'Momoji'}, {$currentDate: {updated_on: {$type: "date"}}})
+

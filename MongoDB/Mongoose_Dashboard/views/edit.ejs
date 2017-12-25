@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Edit animal</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+	<link rel="shortcut icon" href="">
+</head>
+<body>
+	<fieldset>
+		<legend>Current info</legend>
+		<p>Animal: <%= animal.name %></p>
+		<p>Number of Legs: <%= animal.numLegs %></p>
+	</fieldset>
+	<fieldset>
+		<legend>Edit Animal</legend>
+		<form action="/mongooses/<%= animal._id %>" method="POST">
+			<label>Animal:</label>
+			<input type="text" name="name">
+			<br>
+			<label>Number of Legs:</label>
+			<input type="number" name="numLegs">
+			<br>
+			<button class="btn btn-primary">submit</button>
+		</form>
+	</fieldset>
+
+</body>
+</html>
