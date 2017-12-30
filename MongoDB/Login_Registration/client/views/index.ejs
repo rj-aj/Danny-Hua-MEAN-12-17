@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login and Registration</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap4/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="shortcut icon" href="">
+</head>
+<body>
+<div class="container">
+	<div class="row justify-content-md-center">		
+		<h2>Login and Registration</h2>
+	</div>
+	<div class="row justify-content-md-center">
+		<div class="col-md-4 boxframe">
+			<h4>Register</h4>
+			<form action="/register" method="POST">
+				<div class="form-group">
+					<label for="firstName">First Name:</label>
+					<input id="firstName" type="text" class="form-control" name="firstName" placeholder="First Name">
+				</div>
+				<div class="form-group">
+					<label for="lastName">Last Name:</label>
+					<input id="lastName" type="text" class="form-control" name="lastName" placeholder="Last Name">
+				</div>
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input id="email" type="text" class="form-control" name="email" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<label for="birthday">Birthday:</label>
+					<input id="birthday" type="date" class="form-control" name="birthday">
+				</div>
+				<div class="form-group">
+					<label for="password">Password:</label>
+					<input id="password" type="password" class="form-control" name="password">
+				</div>
+				<div class="form-group">
+					<label for="confirmPassword">Confirm Password:</label>
+					<input id="confirmPassword" type="password" class="form-control" name="confirmPassword">
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" type="submit" name="submit" value="Register">
+				</div>
+			</form>
+		</div>
+		<div class="col-md-4 boxframe">
+			<h4>Login</h4>
+			<form action="/login" method="POST">
+				<div class="form-group">
+					<label for="loginEmail">Email:</label>
+					<input id="loginEmail" type="text" class="form-control" name="email" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<label for="loginPassword">Password:</label>
+					<input id="loginPassword" type="password" class="form-control" name="password">
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary" type="submit" name="submit" value="Log In">
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row justify-content-md-center">
+		<% if (typeof(errors) != 'undefined') { %>
+			<% for (let error of errors) { %>
+				<p><%= error %></p>
+			<% } %>
+		<% } %>
+	</div>
+</div>
+
+</body>
+</html>

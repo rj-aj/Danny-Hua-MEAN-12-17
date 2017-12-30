@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login Successful</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap4/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="shortcut icon" href="">
+</head>
+<body>
+	<div class="container">
+		<div class="row justify-content-md-center">
+			<h1>Login Successful!</h1>
+		</div>
+		<div class="row justify-content-md-center">
+			<div>
+				<p>You are log in as <%= user.firstname %> <%= user.lastname %></p>
+			</div>
+		</div>
+		<div class="row justify-content-md-center">
+			<form action="/logout">
+				<button class="btn btn-primary">log out</button>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>
