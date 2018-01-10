@@ -1,0 +1,11 @@
+<h1>Retro Barcode Generator</h1>
+<!-- {{colors | json}}
+<ul>
+    <li *ngFor="let color of colors">
+        {{color}}
+    </li>
+</ul> -->
+<div class="square" *ngFor="let color of colors" [ngStyle]="{
+    'background-color': color,
+    'display': 'inline-block'}">
+</div>
