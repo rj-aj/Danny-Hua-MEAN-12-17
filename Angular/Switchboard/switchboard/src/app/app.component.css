@@ -1,0 +1,13 @@
+.button {
+    width: 80px;
+    border-radius: 20px;
+    margin: 0 0.1em 0 0.1em;
+}
+
+.on {
+    background-color: green;
+}
+
+.buttonDiv {
+    display: inline-block;
+}
