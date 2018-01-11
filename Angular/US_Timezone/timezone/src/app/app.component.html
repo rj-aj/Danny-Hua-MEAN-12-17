@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">US Timezone Display</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <button class="btn btn-primary" (click)="getTimezone('PST')" [ngClass]="{lastClick: lastButtonClick === 'PST'}">PST</button>
+            <button class="btn btn-primary" (click)="getTimezone('MST')" [ngClass]="{lastClick: lastButtonClick === 'MST'}">MST</button>
+            <button class="btn btn-primary" (click)="getTimezone('CST')" [ngClass]="{lastClick: lastButtonClick === 'CST'}">CST</button>
+            <button class="btn btn-primary" (click)="getTimezone('EST')" [ngClass]="{lastClick: lastButtonClick === 'EST'}">EST</button>
+            <button class="btn btn-primary" (click)="getTimezone('clear')" [ngClass]="{lastClick: lastButtonClick === 'clear'}">clear</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2>{{ time | date: 'medium'}}</h2>
+        </div>
+    </div>
+</div>
