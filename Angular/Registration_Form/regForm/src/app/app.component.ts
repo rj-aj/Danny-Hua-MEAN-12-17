@@ -10,22 +10,18 @@ import { Reg } from './registration';
 export class AppComponent {
   reg: Reg = new Reg();
   regs: Array<Reg> = [];
-  // pwError: string = '';
+  registration = {};
 
   onSubmit(event: Event, form: NgForm) {
     event.preventDefault();
 
     console.log('submitted form', this.reg);
-    this.regs.push(this.reg);
-    console.log(this.regs);
+    this.registration = this.reg;
+    console.log(this.registration);
+    // this.regs.push(this.reg);
+    // console.log(this.regs);
+    // console.log(this.reg);
     this.reg = new Reg();
-    form.reset;
-    // if(this.reg.confirmPassword === this.reg.password) {
-    //   this.regs.push(this.reg);
-    //   form.reset();
-    // } else {
-    //   this.pwError = "confirm password does not match";
-    //   form.reset();
-    // }
+    form.resetForm;
   }
 }

@@ -4,7 +4,10 @@
             <h1>Registration Form</h1>
         </div>
     </div>
-    {{ regForm.valid | json}}
+    <div *ngIf="(registration | json) !== '{}'">
+        <p>Thank you for registering with us {{ registration.firstname }}. We just sent you a confirmation email at {{ registration.email }}, and we will send all mail to {{ registration.stAddress }}, {{ registration.city }} {{ registration.state }}.</p><br>
+        <p>Have a wonderful day!</p>
+    </div>
     <div class="row">
         <div class="col-lg-12">
             <form class="form-horizontal" (submit)='onSubmit($event, regForm.value)' #regForm='ngForm'>
@@ -13,28 +16,28 @@
                     <div class="col-sm-5">
                         <input type="text" class="form-control" id="1stName" name="firstname" minlength="2" [(ngModel)]='reg.firstname' #firstName="ngModel" required>
                     </div>
-                    {{ firstName.errors | json}}
-                    <div *ngIf='firstName.errors'>First name is required</div>
-                    <!-- <div *ngIf='firstName.errors.minlength'>First name needs to be more than 2 characters.</div> -->
+                    <div *ngIf='firstName.errors && firstName.errors.minlength !== null'>First name needs to be more than 2 characters.</div>
                 </div>
                 <div class="form-group">
                     <label for="lastName" class="col-sm-2 control-label">Last Name:</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="lastName" name="lastname" required minlength="2" [(ngModel)]='reg.lastname'>
+                        <input type="text" class="form-control" id="lastName" name="lastname" required minlength="2" [(ngModel)]='reg.lastname' #lastName="ngModel">
                     </div>
+                    <div *ngIf='lastName.errors && lastName.errors.minlength !== null'>Last name needs to be more than 2 characters</div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="col-sm-2 control-label">Email:</label>
                     <div class="col-sm-5">
                         <input type="email" class="form-control" id="email" name="email" [(ngModel)]='reg.email' #email="ngModel" required>
                     </div>
-                    <div *ngIf='email.errors'>First name is required</div>
+                    <div *ngIf='email.errors'>Email is required</div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-2 control-label">Password:</label>
                     <div class="col-sm-5">
-                        <input type="password" class="form-control" id="pasword" name="password" required minlength="6" [(ngModel)]='reg.password'>
+                        <input type="password" class="form-control" id="pasword" name="password" required minlength="6" [(ngModel)]='reg.password' #password='ngModel'>
                     </div>
+                    <div *ngIf='lastName.errors && lastName.errors.minlength !== null'>Password needs to be 6 characters or more</div>
                 </div>
                 <div class="form-group">
                     <label for="confirmPassword" class="col-sm-2 control-label">Confirm Password:</label>
@@ -48,8 +51,9 @@
                 <div class="form-group">
                     <label for="address" class="col-sm-2 control-label">Street address:</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="address" name="address" [(ngModel)]='reg.stAddress' required>
+                        <input type="text" class="form-control" id="address" name="address" [(ngModel)]='reg.stAddress' required #stAddress="ngModel">
                     </div>
+                    <div *ngIf='stAddress.errors'>Street addresss is required</div>
                 </div>
                 <div class="form-group">
                     <label for="unit" class="col-sm-2 control-label">unit/Apt #:</label>
@@ -60,14 +64,16 @@
                 <div class="form-group">
                     <label for="city" class="col-sm-2 control-label">City:</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="city" name="city" [(ngModel)]='reg.city' required>
+                        <input type="text" class="form-control" id="city" name="city" [(ngModel)]='reg.city' required #city="ngModel">
                     </div>
+                    <div *ngIf='city.errors'>City is required</div>
                 </div>
                 <div class="form-group">
                     <label for="state" class="col-sm-2 control-label">State:</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="state" name="state" [(ngModel)]='reg.state' required>
+                        <input type="text" class="form-control" id="state" name="state" [(ngModel)]='reg.state' required #state="ngModel">
                     </div>
+                    <div *ngIf='state.errors'>State is required</div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-2 control-label">
