@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h1>Registration Form</h1>
+        </div>
+    </div>
+    {{ regForm.valid | json}}
+    <div class="row">
+        <div class="col-lg-12">
+            <form class="form-horizontal" (submit)='onSubmit($event, regForm.value)' #regForm='ngForm'>
+                <div class="form-group">
+                    <label for="1stName" class="col-sm-2 control-label">First Name:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="1stName" name="firstname" minlength="2" [(ngModel)]='reg.firstname' #firstName="ngModel" required>
+                    </div>
+                    {{ firstName.errors | json}}
+                    <div *ngIf='firstName.errors'>First name is required</div>
+                    <!-- <div *ngIf='firstName.errors.minlength'>First name needs to be more than 2 characters.</div> -->
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-2 control-label">Last Name:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="lastName" name="lastname" required minlength="2" [(ngModel)]='reg.lastname'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email:</label>
+                    <div class="col-sm-5">
+                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]='reg.email' #email="ngModel" required>
+                    </div>
+                    <div *ngIf='email.errors'>First name is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Password:</label>
+                    <div class="col-sm-5">
+                        <input type="password" class="form-control" id="pasword" name="password" required minlength="6" [(ngModel)]='reg.password'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword" class="col-sm-2 control-label">Confirm Password:</label>
+                    <div class="col-sm-5">
+                        <input type="password" class="form-control" id="confirmPasword" name="confirmPassword" required [compareEqual]="reg.password" [(ngModel)]='reg.confirmPassword' #confirmPassword="ngModel">
+                    </div>
+                    <div *ngIf="confirmPassword.errors && confirmPassword.errors.compareEqual">
+                        <p>Password do not match</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="col-sm-2 control-label">Street address:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="address" name="address" [(ngModel)]='reg.stAddress' required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="unit" class="col-sm-2 control-label">unit/Apt #:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="unit" name="unit" [(ngModel)]='reg.unit'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="city" class="col-sm-2 control-label">City:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="city" name="city" [(ngModel)]='reg.city' required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="col-sm-2 control-label">State:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="state" name="state" [(ngModel)]='reg.state' required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2 control-label">
+                        <label>I'm feeling lucky:</label>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="radio-inline">
+                            <label>
+                              <input type="radio" id="yes" name="lucky" value="yes" [(ngModel)]='reg.feelingLucky' checked>
+                              <p>yes</p>
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label>
+                              <input type="radio" id="no" name="lucky" value="no" [(ngModel)]='reg.feelingLucky'>
+                              <p>no</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-5">
+                        <button *ngIf='regForm.valid' type="submit" class="btn btn-default">Register</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
