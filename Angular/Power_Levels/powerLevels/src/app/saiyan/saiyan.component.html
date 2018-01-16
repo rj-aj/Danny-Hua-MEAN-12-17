@@ -1,0 +1,8 @@
+<div class="col-lg-4 component">
+    <h4>SaiyanComponent</h4>
+    <hr>
+    <p>Power Level: {{power}}</p>
+    <h5 *ngIf='power > 9000 && power <= 20000'>Over 9000!!</h5>
+    <h5 *ngIf='power > 20000 && power < 50000'>Superlative!</h5>
+    <h5 *ngIf='power === 50000'>The One</h5>
+</div>
