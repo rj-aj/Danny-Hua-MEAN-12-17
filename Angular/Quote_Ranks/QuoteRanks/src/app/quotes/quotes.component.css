@@ -1,0 +1,10 @@
+div.buttons button {
+    margin: 2px;
+    display: block;
+    width: 100px;
+    float: right;
+}
+
+div.quoteBlock {
+    border: 1px solid gray;
+}
