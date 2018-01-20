@@ -5,15 +5,21 @@
             <div class="form-group">
                 <textarea class="col-lg-8" [(ngModel)]="quote.quote" required name="quote" minlength="3" #say='ngModel' rows="3"></textarea>
             </div>
+            <div *ngIf='say.errors && say.minlength !== null'>
+                <p style="color: red">Quote needs at least 3 characters</p>
+            </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label" for="author">Author:</label>
                 <div class="col-lg-4">
                     <input class="form-control" type="text" id="author" name="author" [(ngModel)]='quote.author' #author='ngModel' required>
                 </div>
             </div>
+            <div *ngIf='author.errors'>
+                <p style='color: red'>Author is required</p>
+            </div>
             <div class="form-group">
                 <div class="col-lg-offset-6 col-lg-2">
-                    <button class="btn btn-primary" type="submit">Add quote</button>
+                    <button class="btn btn-primary" *ngIf='form.valid' type="submit">Add quote</button>
                 </div>
             </div>
         </form>
