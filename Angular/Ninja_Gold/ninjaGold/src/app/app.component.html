@@ -1,0 +1,5 @@
+<div class="container">
+    <app-gold [goldCount]='gold'></app-gold>
+    <app-process (updateGold)="totalGold()" (updateLog)="getMessages()"></app-process>
+    <app-display [messages]='datalog'></app-display>
+</div>
