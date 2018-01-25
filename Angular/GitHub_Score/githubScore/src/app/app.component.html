@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>GitHub Score</h1>
+            <form (submit)="calculate(form)" #form="ngForm">
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label text-right">Username:</label>
+                    <div class="col-md-4">
+                        <input type="text" name="username" class="form-control" [ngModel]="username" required>
+                    </div>
+                </div>
+                <div class="offset-md-2 col-md-4">
+                    <button [disabled]="form.invalid" class="btn btn-primary">Calculate</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h2>Your Score: {{ score }}</h2>
+            <br>
+            <h4 class="text-danger" *ngIf="score < 20">Needs work!</h4>
+            <h4 class="text-warning" *ngIf="score > 20 && score < 50">A descent start!</h4>
+            <h4 *ngIf="score > 50 && score < 100">Doing good!</h4>
+            <h4 class="text-success" *ngIf="score > 100 && score < 200">Great work!</h4>
+            <h4 class="text-primary" *ngIf="score >= 200">Github elite!</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" *ngIf="errorMessage">
+            <p class="text-danger">{{ username }} {{ errorMessage }}</p>
+        </div>
+    </div>
+</div>
