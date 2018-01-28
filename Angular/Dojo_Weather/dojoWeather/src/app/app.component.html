@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" [routerLink]="['/']">Dojo Weather Forcast</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['seattle']">Seatle WA</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['sanjose']">San Jose CA</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['burbank']">Burbank CA</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['dallas']">Dallas TX</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['washington']">Washington DC</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['chicago']">Chicago IL</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
